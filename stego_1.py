@@ -6,39 +6,31 @@ import matplotlib.pyplot as plt
 def hide():
     img = np.array(Image.open('Lena.png'))
 
-    file = open("verySecretTextFile.txt", "r")
+    Bytes = np.fromfile("verySecretTextFile.txt", dtype="uint8")
+    Bits = np.unpackbits(Bytes)
 
     rows, columns, channels = img.shape
 
-    counter = 0
+    length = len(Bits)
 
+    counter = length
+    index = 0
     x = 1
     y = 0
     z = 0
-    while True:
-        # read a byte of the file
-        temp = file.read(1)
-        # If it is the end of the file, stop the loop
-        if temp == '':
-            break
+    while index < counter:
 
-        counter = counter + 1
-
-        temp_int = ord(temp)
-
-        temp_4 = temp_int // 4
-        temp_16 = temp_int // 16
-
-        r = temp_int - (temp_4 * 4)
-        g = temp_4 - (temp_16 * 4)
-        b = temp_16
-
-        img[x, y, z] = img[x, y, z] // 4 * 4 + r
+        img[x, y, z] = img[x, y, z] // 2 * 2 + Bits[index]
         z = z + 1
-        img[x, y, z] = img[x, y, z] // 4 * 4 + g
-        z = z + 1
-        img[x, y, z] = img[x, y, z] // 8 * 8 + b
-        z = 0
+        index = index + 1
+        if index < counter:
+            img[x, y, z] = img[x, y, z] // 2 * 2 + Bits[index]
+            z = z + 1
+            index = index + 1
+            if index < counter:
+                img[x, y, z] = img[x, y, z] // 2 * 2 + Bits[index]
+                z = 0
+                index = index + 1
 
         if (y + 1) < columns:
             y = y + 1
@@ -50,21 +42,15 @@ def hide():
                 print('You need a larger image!')
                 return
 
-    counter1 = counter
+    counter1 = length
     x1 = 0
     y1 = 0
     z1 = 0
     while y1 < columns:
         for z1 in range(0, 3):
-            # print(counter1 % 4)
-            img[x1, y1, z1] = img[x1, y1, z1] // 4 * 4 + (counter1 % 4)
-            counter1 = counter1 // 4
+            img[x1, y1, z1] = img[x1, y1, z1] // 2 * 2 + (counter1 % 2)
+            counter1 = counter1 // 2
         y1 = y1 + 1
-
-    file.close()
-
-    # print(counter)
-    # print(counter1)
 
     plt.figure("hide_information")
     plt.imshow(img)

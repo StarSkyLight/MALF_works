@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 # plt.axis('off')
 # plt.show()
 
-img = Image.open('Lena.png')
+# img = Image.open('Lena.png')
 # rgb_img = img.convert('RGB')
 # r, g, b = rgb_img.getpixel((1, 1))
 # print(r)
@@ -24,20 +24,14 @@ img = Image.open('Lena.png')
 # print(b)
 #
 #
-img_ch = np.array(img)
+# img_ch = np.array(img)
 # # img_ch[1, 1, 0] = 0
 # print(img_ch[1, 1, 0])
 # print(img_ch[1, 1, 1])
 # print(img_ch[1, 1, 2])
 #
-rows, cols, dims = img_ch.shape
-z=0
-y=0
-for x in range(0, 220):
-    img_ch[x, y, z] = 0
+# rows, cols, dims = img_ch.shape
 
-plt.savefig("stego_image.png")
-plt.show()
 # print(rows)
 # print(cols)
 # print(dims)
@@ -59,3 +53,18 @@ plt.show()
 # print(b)
 # # chr()
 # file.close()
+
+# file = open("verySecretTextFile.txt", "rb")
+# temp = file.read(1)
+# Bytes = np.fromfile("verySecretTextFile.txt", dtype ="uint8")
+# Bits = np.unpackbits(Bytes)
+# Bytes.tofile("test.txt")
+test = np.array([0, 1, 0, 0, 1, 1, 0, 1])
+num = 8
+y = np.zeros((num,), dtype = np.int)
+y[1] = 1
+y[4] = 1
+y[5] = 1
+y[7] = 1
+
+print(np.packbits(y))
