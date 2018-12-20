@@ -3,7 +3,10 @@ import numpy as np
 
 
 def discover():
-    img = np.array(Image.open('stego_image.png'))
+    temp1 = input("Please input the name of the stego image:")
+    stego_image = str(temp1)
+
+    img = np.array(Image.open(stego_image))
 
     temp = input("Please input the number of bits:")
     num = int(temp) * 2

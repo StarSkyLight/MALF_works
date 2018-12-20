@@ -4,9 +4,15 @@ import matplotlib.pyplot as plt
 
 
 def hide():
-    img = np.array(Image.open('Lena.png'))
+    temp1 = input("Please input the name of the cover image:")
+    cover_image = str(temp1)
 
-    Bytes = np.fromfile("verySecretTextFile.txt", dtype="uint8")
+    temp2 = input("Please input the name of the text file which you want to hide:")
+    text_file = str(temp2)
+
+    img = np.array(Image.open(cover_image))
+
+    Bytes = np.fromfile(text_file, dtype="uint8")
     Bits = np.unpackbits(Bytes)
 
     rows, columns, channels = img.shape
