@@ -15,7 +15,7 @@ def hide():
 
     counter = length
     index = 0
-    x = 1
+    x = 0
     y = 0
     z = 0
     while index < counter:
@@ -43,7 +43,7 @@ def hide():
                 return
 
     counter1 = length
-    x1 = 0
+    x1 = rows - 1
     y1 = 0
     z1 = 0
     while y1 < columns:

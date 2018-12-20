@@ -11,7 +11,7 @@ def recover():
 
     begin = False
 
-    x = 0
+    x = rows - 1
     y = columns - 1
     z = 2
     while y >= 0:
@@ -28,9 +28,7 @@ def recover():
 
     list_bits = np.zeros((counter,), dtype=np.int)
 
-    print(counter)
-
-    x1 = 1
+    x1 = 0
     y1 = 0
     z1 = 0
     index = 0
