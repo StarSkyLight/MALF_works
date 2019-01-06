@@ -59,12 +59,9 @@ import matplotlib.pyplot as plt
 # Bytes = np.fromfile("verySecretTextFile.txt", dtype ="uint8")
 # Bits = np.unpackbits(Bytes)
 # Bytes.tofile("test.txt")
-test = np.array([0, 1, 0, 0, 1, 1, 0, 1])
-num = 8
-y = np.zeros((num,), dtype = np.int)
-y[1] = 1
-y[4] = 1
-y[5] = 1
-y[7] = 1
 
-print(np.packbits(y))
+int1 = 124
+bin1 = bin(int1)
+str1 = str(bin1)
+print(str1)
+print(str1[3] == str(0))
